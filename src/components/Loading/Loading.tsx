@@ -31,7 +31,7 @@ const Loading = () => {
           transform: [{ rotate: RotateData }],
         }}
       >
-        <AntDesign name="loading1" size={32} color="green" />
+        <AntDesign name="loading1" size={32} color="#8acc4b" />
       </Animated.View>
     </View>
   );

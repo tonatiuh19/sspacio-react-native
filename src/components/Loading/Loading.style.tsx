@@ -8,7 +8,6 @@ export const page = StyleSheet.create({
     zIndex: 10,
   },
   text: {
-    fontSize: 30,
-    color: "#000",
+    color: "#8acc4b",
   },
 });

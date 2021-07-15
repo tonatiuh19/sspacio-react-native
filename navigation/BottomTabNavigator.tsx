@@ -23,7 +23,10 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Espacio"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      tabBarOptions={{
+        activeTintColor: "#8acc4b",
+        style: { backgroundColor: "#000000" },
+      }}
     >
       <BottomTab.Screen
         name="Espacio"
