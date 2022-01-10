@@ -25,12 +25,16 @@ export const page = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "center",
     borderRadius: 10,
+    paddingBottom: 30,
   },
   tinyPicture: {
     width: imageWidth * 1.1,
     height: imageHeight * 1.1,
   },
   containerText: {
+    paddingTop: 15,
+    padding: 5,
+
     flexDirection: "row",
     flexWrap: "nowrap",
     justifyContent: "space-between",
@@ -43,6 +47,9 @@ export const page = StyleSheet.create({
     flexShrink: 1,
     flexBasis: "auto",
     alignSelf: "auto",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#547d2d",
   },
   containerPrice: {
     //order: 0,
@@ -50,5 +57,10 @@ export const page = StyleSheet.create({
     flexShrink: 1,
     flexBasis: "auto",
     alignSelf: "auto",
+    fontSize: 23,
+    fontWeight: "bold",
+  },
+  containerPlace: {
+    fontSize: 15,
   },
 });

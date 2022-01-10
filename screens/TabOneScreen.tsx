@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   Dimensions,
+  RefreshControl,
 } from "react-native";
 import * as Location from "expo-location";
 import { Text, View } from "../components/Themed";
@@ -19,6 +20,10 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const { RNAndroidOpenSettings } = NativeModules;
 const { height, width } = Dimensions.get("window");
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 export default function TabOneScreen() {
   const [location, setLocation] = useState({
     latitude: "",
@@ -29,6 +34,13 @@ export default function TabOneScreen() {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [spacesData, setSpacesData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    initialData();
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   const DATA = [
     {
@@ -152,10 +164,24 @@ export default function TabOneScreen() {
           >
             <PlacesSearcher></PlacesSearcher>
           </ScrollView>
-          <ScrollView>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
             <FlatList
               data={spacesData}
-              renderItem={CarouselCard}
+              renderItem={(x: any) => {
+                console.log(x.item);
+                return (
+                  <CarouselCard
+                    title={x.item.title}
+                    price={x.item.price}
+                    place={x.item.city + ", " + x.item.state}
+                    spaceType={x.item.space_type}
+                  ></CarouselCard>
+                );
+              }}
               keyExtractor={(item, index: any) => index}
             />
           </ScrollView>
